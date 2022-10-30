@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Open Weather</string>
+    <string name="somehing_goes_wrong">Something goes wrong</string>
+    <string name="retry">Retry</string>
+    <string name="city_name">City Name</string>
+    <string name="not_accurate_data">Not Accurate Data</string>
+    <string name="min_max">min/max</string>
+    <string name="feels_like">Feels Like</string>
+    <string name="enter_city_name">Enter City Name</string>
+</resources>
