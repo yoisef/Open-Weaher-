@@ -16,4 +16,4 @@ design architecture -> Mvvm
 
 Web Service -> Retrofit+okhttp+Moshi+Coroutine 
 
-dependency Injection -> Dagger 
+local and instrumented  tests still working on it 
