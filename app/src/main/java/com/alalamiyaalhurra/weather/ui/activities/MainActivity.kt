@@ -42,14 +42,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        database = ForecastDatabase(this)
-        weatherRepository = WeatherRepository()
-        cityRepo = CityRepository(database)
-        val factory = MainViewModelFactory(cityRepository = cityRepo, weatherRepository = weatherRepository, forecastDatabase = database)
-        viewModel = ViewModelProvider(this,factory)[MainViewModel::class.java]
-
-
-
 
         setUpUI()
        setUpObserver()
@@ -74,6 +66,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun setUpUI(){
+        database = ForecastDatabase(this)
+        weatherRepository = WeatherRepository()
+        cityRepo = CityRepository(database)
+        val factory = MainViewModelFactory(cityRepository = cityRepo, weatherRepository = weatherRepository, forecastDatabase = database)
+        viewModel = ViewModelProvider(this,factory)[MainViewModel::class.java]
+
         binding.recyclerDayTimes.layoutManager = LinearLayoutManager(this)
         mAdapter = DaysAdapter(arrayListOf())
         binding.recyclerDayTimes.adapter =mAdapter
@@ -115,11 +113,12 @@ class MainActivity : AppCompatActivity() {
                     binding.dataLayout.visibility=View.VISIBLE
                     binding.loadingProgress.visibility=View.GONE
                     binding.accurateNotify.visibility=View.GONE
+                    binding.errorLayout.visibility=View.GONE
 
                  resource.data?.city.
                    apply {
                        Log.e("lower","=="+this!!.name!!.lowercase())
-                        binding.weather= CityUi(sunRise = this!!.sunrise!!.unixTimestampToTimeString(), sunSet = this!!.sunset!!.unixTimestampToTimeString(), cityName = this.name.toString())
+                        binding.weather= CityUi(sunRise = this!!.sunrise!!.unixTimestampToTimeString(), sunSet = this!!.sunset!!.unixTimestampToTimeString(), cityName = this.name.toString(), country =this.country.toString() )
                        this.days= resource.data?.day
                         Log.e("city","==${this.name}")
                         viewModel.insertCity( city = this)
@@ -132,6 +131,9 @@ class MainActivity : AppCompatActivity() {
                 Status.ERROR->{
                     binding.loadingProgress.visibility=View.GONE
                     binding.dataLayout.visibility=View.VISIBLE
+
+                    binding.accurateNotify.visibility=View.GONE
+                    binding.errorLayout.visibility=View.GONE
 
                     viewModel.searchCityByName( city = binding.citTxtField.text.toString().trim())
 
@@ -155,12 +157,13 @@ class MainActivity : AppCompatActivity() {
                     binding.dataLayout.visibility=View.VISIBLE
                     binding.errorLayout.visibility=View.GONE
                     binding.accurateNotify.visibility=View.VISIBLE
+                    binding.loadingProgress.visibility=View.GONE
 
 
 
                     city.let {
                         it.data!!.days?.let { it1 -> updateData(it1) }
-                        binding.weather= CityUi(sunRise = it.data.sunrise!!.unixTimestampToTimeString(), sunSet = it.data.sunset!!.unixTimestampToTimeString(), cityName = it.data.name.toString())
+                        binding.weather= CityUi(sunRise = it.data.sunrise!!.unixTimestampToTimeString(), sunSet = it.data.sunset!!.unixTimestampToTimeString(), cityName = it.data.name.toString(), country =it.data.country.toString())
 
                     }
                 }
@@ -168,6 +171,9 @@ class MainActivity : AppCompatActivity() {
                     binding.errorLayout.visibility=View.VISIBLE
                     binding.guidingText.visibility=View.GONE
                     binding.dataLayout.visibility=View.GONE
+
+                    binding.accurateNotify.visibility=View.GONE
+                    binding.loadingProgress.visibility=View.GONE
 
                 }
 
