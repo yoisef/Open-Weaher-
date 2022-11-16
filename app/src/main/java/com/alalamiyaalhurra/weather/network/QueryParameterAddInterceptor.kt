@@ -1,4 +1,4 @@
-package com.soumik.weatherzone.network
+package com.alalamiyaalhurra.weather.network
 
 
 import com.alalamiyaalhurra.weather.BuildConfig

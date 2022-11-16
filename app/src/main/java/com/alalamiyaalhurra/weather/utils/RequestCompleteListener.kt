@@ -1,4 +1,4 @@
-package com.soumik.weatherzone.utils
+package com.alalamiyaalhurra.weather.utils
 
 
 /**

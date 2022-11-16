@@ -1,4 +1,4 @@
-package com.alalamiyaalhurra.weather.ui
+package com.alalamiyaalhurra.weather.utils
 
 import android.util.Log
 import android.widget.ImageView

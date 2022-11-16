@@ -6,7 +6,7 @@
     <data>
         <variable
             name="weather"
-            type="com.alalamiyaalhurra.weather.models.CityUi" />
+            type="com.alalamiyaalhurra.weather.domain.models.CityUi" />
     </data>
 
 
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent"
-            tools:context="com.alalamiyaalhurra.weather.ui.activities.MainActivity">
+            tools:context="com.alalamiyaalhurra.weather.presentation.ui.activities.MainActivity">
 
             <LinearLayout
                 android:layout_width="match_parent"
