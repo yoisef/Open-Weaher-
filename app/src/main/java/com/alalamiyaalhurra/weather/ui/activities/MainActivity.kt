@@ -106,6 +106,7 @@ class MainActivity : AppCompatActivity() {
     {
         viewModel.forecastByCity.observe(this, Observer { resource ->
 
+            Log.e("status","=="+resource.status)
 
             when(resource.status)
             {
